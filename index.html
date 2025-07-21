@@ -3,23 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIGITAL SAMURAI</title>
+    <title>GAJANANADA ADHIKARI • SECURE • FAST • VERSE</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+        
         :root {
-            --depth-1: #0d1117;
-            --depth-2: #161b22;
-            --depth-3: #21262d;
-            --depth-4: #30363d;
+            --void: #000000;
+            --ghost: #ffffff;
+            --blood: #ff0040;
+            --neon: #00ff88;
+            --steel: #1a1a1a;
+            --smoke: #666666;
+            --whisper: #f8f8f8;
             --void-glow: rgba(255, 107, 157, 0.15);
-            --flow-gradient: linear-gradient(135deg, #0d1117 0%, #161b22 25%, #21262d 50%, #161b22 75%, #0d1117 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            height: 100vh;
-            background: var(--flow-gradient);
-            background-attachment: fixed;
-            overflow: hidden;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--void);
+            color: var(--ghost);
+            overflow-x: hidden;
+            line-height: 1.4;
+            cursor: crosshair;
         }
 
         /* Enhanced flowing background */
@@ -58,10 +69,166 @@
                 filter: hue-rotate(240deg) brightness(1.1);
             }
         }
+
+        /* Header - floating HUD style */
+        header {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 2px;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            box-shadow: 0 0 50px rgba(0,255,136,0.1);
+        }
+
+        .hud-left {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .system-name {
+            color: var(--ghost);
+            font-weight: 700;
+        }
+
+        .hud-right {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--neon);
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--neon);
+            border-radius: 50%;
+            animation: statusPulse 2s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        /* Minimal Hero section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 700;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            color: var(--ghost);
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--smoke);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        /* Custom cursor */
+        const cursor = document.createElement('div');
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--neon);
+            border-radius: 50%;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transition: all 0.1s ease;
+        `;
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
     </style>
 </head>
 <body>
-  <h2>GAJANANDA ADHIKARI</h2>
-  <h4>Security First Software Architecture</h4>
+    <div class="data-stream">
+        <div class="data-line"></div>
+        <div class="data-line"></div>
+        <div class="data-line"></div>
+        <div class="data-line"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="hud-left">
+                <div class="system-name">GAJANANADA ADHIKARI</div>
+            </div>
+            <div class="hud-right">
+                <div class="status-indicator">
+                    <div class="pulse-dot"></div>
+                    <span>DIGITAL SAMURAI</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero">
+            <h1 class="hero-title">SECURE<br>FAST<br>VERSE</h1>
+            <p class="hero-subtitle">
+                Where cybersecurity meets Formula 1 precision,<br>
+                and both find expression in the rhythm of code and poetry.
+            </p>
+        </section>
+    </div>
+
+    <script>
+        // Cursor trail effect
+        const cursor = document.createElement('div');
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--neon);
+            border-radius: 50%;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transition: all 0.1s ease;
+        `;
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
+    </script>
 </body>
 </html>
